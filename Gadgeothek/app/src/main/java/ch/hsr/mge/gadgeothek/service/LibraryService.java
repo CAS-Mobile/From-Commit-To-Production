@@ -137,7 +137,7 @@ public class LibraryService {
     }
 
 
-    public static void reserveGadget(Gadget toReserve, final Callback<Boolean> callback) {
+    public void reserveGadget(Gadget toReserve, final Callback<Boolean> callback) {
         checkServerUrlSet();
         checkLoggedIn();
         HashMap<String, String> headers = getAuthHeaders();

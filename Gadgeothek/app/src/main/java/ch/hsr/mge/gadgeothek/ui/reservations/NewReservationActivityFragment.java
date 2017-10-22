@@ -173,7 +173,7 @@ public class NewReservationActivityFragment extends Fragment implements NewReser
         final List<Gadget> gadgets = Collections.synchronizedList(new ArrayList<>(dataAdapter.getSelectedGadgets()));
 
         for (final Gadget gadget : gadgets) {
-            LibraryService.reserveGadget(gadget, new Callback<Boolean>() {
+            libraryService.reserveGadget(gadget, new Callback<Boolean>() {
                 @Override
                 public void onCompletion(Boolean success) {
                     gadgets.remove(gadget);
