@@ -60,7 +60,7 @@ public class LoansFragment extends Fragment implements SwipeRefreshLayout.OnRefr
 
     private void refreshLoans() {
         refreshLayout.setRefreshing(true);
-        LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
+        libraryService.getLoansForCustomer(new Callback<List<Loan>>() {
             @Override
             public void onCompletion(List<Loan> newLoans) {
                 setupAdapter();

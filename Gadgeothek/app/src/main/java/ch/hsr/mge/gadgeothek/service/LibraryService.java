@@ -96,7 +96,7 @@ public class LibraryService {
     }
 
 
-    public static void getLoansForCustomer(final Callback<List<Loan>> callback) {
+    public void getLoansForCustomer(final Callback<List<Loan>> callback) {
         checkServerUrlSet();
         checkLoggedIn();
         HashMap<String, String> headers = getAuthHeaders();
