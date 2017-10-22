@@ -95,7 +95,7 @@ public class AbstractAuthenticationActivity extends AppCompatActivity {
                 getString(R.string.settings_server_address),
                 getString(R.string.settings_default_server));
 
-        LibraryService.setServerAddress(url);
+        libraryService.setServerAddress(url);
 
         libraryService.login(email, password, new Callback<Boolean>() {
             @Override

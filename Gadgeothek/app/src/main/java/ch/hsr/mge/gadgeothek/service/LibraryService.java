@@ -20,15 +20,15 @@ public class LibraryService {
 
     private static final String TAG = LibraryService.class.getSimpleName();
     private static LoginToken token;
-    private static String serverUrl;
+    private String serverUrl;
 
     public LibraryService(String serverUrl) {
         this.serverUrl = serverUrl;
     }
 
-    public static void setServerAddress(String address) {
+    public void setServerAddress(String address) {
         Log.d(TAG, "Setting server to " + address);
-        serverUrl = address;
+        this.serverUrl = address;
     }
 
     public boolean isLoggedIn() {
@@ -214,7 +214,7 @@ public class LibraryService {
         return headers;
     }
 
-    private static void checkServerUrlSet() {
+    private void checkServerUrlSet() {
         if(serverUrl == null) {
             throw new IllegalStateException("No server address is set, call setServerAddress before using this method.");
         }
