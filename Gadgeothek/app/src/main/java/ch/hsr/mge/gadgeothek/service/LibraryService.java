@@ -161,7 +161,7 @@ public class LibraryService {
     }
 
 
-    public static void deleteReservation(Reservation toDelete, final Callback<Boolean> callback) {
+    public void deleteReservation(Reservation toDelete, final Callback<Boolean> callback) {
         checkServerUrlSet();
         checkLoggedIn();
         HashMap<String, String> headers = getAuthHeaders();
