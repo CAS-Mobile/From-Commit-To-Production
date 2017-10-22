@@ -31,7 +31,7 @@ public class LibraryService {
         return token != null;
     }
 
-    public static void login(String mail, String password, final Callback<Boolean> callback) {
+    public void login(String mail, String password, final Callback<Boolean> callback) {
         checkServerUrlSet();
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("email", mail);

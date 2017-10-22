@@ -8,9 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
+
+import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
 
 public class RegisterActivity extends AbstractAuthenticationActivity {
 
@@ -107,7 +110,7 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
                 public void onCompletion(Boolean success) {
                     showProgress(loginFormView, progressView, false);
                     if (success) {
-                        LibraryService.login(email, password, new Callback<Boolean>() {
+                        libraryService.login(email, password, new Callback<Boolean>() {
                             @Override
                             public void onCompletion(Boolean success) {
                                 startMainActivity(/* isAutoLogin = */false);
