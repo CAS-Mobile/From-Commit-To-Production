@@ -11,6 +11,7 @@ import java.util.List;
 import ch.hsr.mge.gadgeothek.domain.Gadget;
 import ch.hsr.mge.gadgeothek.domain.Loan;
 import ch.hsr.mge.gadgeothek.domain.Reservation;
+import okhttp3.OkHttpClient;
 
 /**
  * Diese Klasse soll kein Vorbild für eine echte Service-Implementierung sein sondern ein Kompromiss,
@@ -21,9 +22,11 @@ public class LibraryService {
     private static final String TAG = LibraryService.class.getSimpleName();
     private static LoginToken token;
     private String serverUrl;
+    private OkHttpClient httpClient;
 
-    public LibraryService(String serverUrl) {
+    public LibraryService(String serverUrl, OkHttpClient httpClient) {
         this.serverUrl = serverUrl;
+        this.httpClient = httpClient;
     }
 
     public void setServerAddress(String address) {

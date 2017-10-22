@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 
 import ch.hsr.mge.gadgeothek.service.LibraryService;
+import okhttp3.OkHttpClient;
 
 import static ch.hsr.mge.gadgeothek.ui.AbstractAuthenticationActivity.PREFERENCES;
 
@@ -23,6 +24,6 @@ public class GadgeothekApplication extends Application {
     }
 
     protected LibraryService createLibraryService(String url) {
-        return new LibraryService(url);
+        return new LibraryService(url, new OkHttpClient());
     }
 }
