@@ -27,7 +27,7 @@ public class LibraryService {
         serverUrl = address;
     }
 
-    public static boolean isLoggedIn() {
+    public boolean isLoggedIn() {
         return token != null;
     }
 

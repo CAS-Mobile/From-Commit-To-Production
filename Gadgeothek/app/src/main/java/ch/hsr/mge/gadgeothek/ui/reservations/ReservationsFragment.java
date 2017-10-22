@@ -20,11 +20,14 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.domain.Reservation;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 import ch.hsr.mge.gadgeothek.ui.GadgeothekActivity;
+
+import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
 
 public class ReservationsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -50,7 +53,7 @@ public class ReservationsFragment extends Fragment implements SwipeRefreshLayout
     public void onStart() {
         super.onStart();
 
-        if (LibraryService.isLoggedIn()) {
+        if (libraryService.isLoggedIn()) {
             refreshReservations();
         } else {
             snack("You are not logged in!?");

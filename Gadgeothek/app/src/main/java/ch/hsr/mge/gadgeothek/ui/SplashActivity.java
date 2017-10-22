@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.Window;
 
 import ch.hsr.mge.gadgeothek.R;
-import ch.hsr.mge.gadgeothek.service.LibraryService;
+
+import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
+
 
 public class SplashActivity extends AbstractAuthenticationActivity {
     private View progressView;
@@ -42,7 +44,7 @@ public class SplashActivity extends AbstractAuthenticationActivity {
                     }
                 });
 
-        if (!LibraryService.isLoggedIn() && !lastAutologinAttemptFailed) {
+        if (!libraryService.isLoggedIn() && !lastAutologinAttemptFailed) {
             String email = preferences.getString(EMAIL, null);
             String password = preferences.getString(PASSWORD, null);
             if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
