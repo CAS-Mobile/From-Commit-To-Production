@@ -18,12 +18,15 @@ import android.view.View;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 import ch.hsr.mge.gadgeothek.ui.loans.LoansFragment;
 import ch.hsr.mge.gadgeothek.ui.reservations.NewReservationActivity;
 import ch.hsr.mge.gadgeothek.ui.reservations.ReservationsFragment;
+
+import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
 
 public class GadgeothekActivity extends AppCompatActivity {
 
@@ -92,7 +95,7 @@ public class GadgeothekActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                LibraryService.logout(new Callback<Boolean>() {
+                libraryService.logout(new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
                         SharedPreferences preferences = getSharedPreferences(AbstractAuthenticationActivity.PREFERENCES, MODE_PRIVATE);

@@ -51,7 +51,7 @@ public class LibraryService {
         request.execute();
     }
 
-    public static void logout(final Callback<Boolean> callback) {
+    public void logout(final Callback<Boolean> callback) {
         checkServerUrlSet();
         HashMap<String, String> headers = getAuthHeaders();
 
