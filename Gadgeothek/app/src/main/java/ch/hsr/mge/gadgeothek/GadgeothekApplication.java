@@ -19,12 +19,11 @@ public class GadgeothekApplication extends Application {
                 getString(R.string.settings_server_address),
                 getString(R.string.settings_default_server));
 
-        LibraryService.setServerAddress(url);
-
-        libraryService = createLibraryService();
+        libraryService = createLibraryService(url);
     }
 
-    protected LibraryService createLibraryService() {
+    protected LibraryService createLibraryService(String url) {
+        LibraryService.setServerAddress(url);
         return new LibraryService();
     }
 }
