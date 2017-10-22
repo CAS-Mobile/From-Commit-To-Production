@@ -4,6 +4,8 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import ch.hsr.mge.gadgeothek.ui.RegisterActivity;
+import ch.hsr.mge.gadgeothek.ui.SplashActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +20,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class RegisterTest {
 
     @Rule
-    public ActivityTestRule<RegisterActivity> activityTestRule = new ActivityTestRule<>(RegisterActivity.class);
+    public ActivityTestRule<SplashActivity> activityTestRule = new ActivityTestRule<>(SplashActivity.class);
 
     @Test
     public void showsRegisterActivity() {
