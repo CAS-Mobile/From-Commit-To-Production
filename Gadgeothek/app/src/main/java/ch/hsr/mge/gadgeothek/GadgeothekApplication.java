@@ -9,6 +9,8 @@ import static ch.hsr.mge.gadgeothek.ui.AbstractAuthenticationActivity.PREFERENCE
 
 public class GadgeothekApplication extends Application {
 
+    public static LibraryService libraryService;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,5 +21,10 @@ public class GadgeothekApplication extends Application {
 
         LibraryService.setServerAddress(url);
 
+        libraryService = createLibraryService();
+    }
+
+    protected LibraryService createLibraryService() {
+        return new LibraryService();
     }
 }
