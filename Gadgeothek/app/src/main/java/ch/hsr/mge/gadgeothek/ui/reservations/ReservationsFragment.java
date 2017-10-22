@@ -20,7 +20,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.domain.Reservation;
 import ch.hsr.mge.gadgeothek.service.Callback;
@@ -66,7 +65,7 @@ public class ReservationsFragment extends Fragment implements SwipeRefreshLayout
     }
 
     private void refreshReservations() {
-        LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
+        libraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> newReservations) {
                 setupAdapter();

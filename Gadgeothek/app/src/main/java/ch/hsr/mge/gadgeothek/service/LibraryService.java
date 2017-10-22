@@ -116,7 +116,7 @@ public class LibraryService {
         request.execute();
     }
 
-    public static void getReservationsForCustomer(final Callback<List<Reservation>> callback) {
+    public void getReservationsForCustomer(final Callback<List<Reservation>> callback) {
         checkServerUrlSet();
         checkLoggedIn();
         HashMap<String, String> headers = getAuthHeaders();

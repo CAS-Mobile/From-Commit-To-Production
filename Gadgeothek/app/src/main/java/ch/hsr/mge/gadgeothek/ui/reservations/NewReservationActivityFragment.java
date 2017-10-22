@@ -26,6 +26,8 @@ import ch.hsr.mge.gadgeothek.domain.Reservation;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 
+import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
+
 public class NewReservationActivityFragment extends Fragment implements NewReservationsArrayAdapter.OnSelectionChangedListener {
 
     private static final String TAG = NewReservationActivityFragment.class.getSimpleName();
@@ -62,7 +64,7 @@ public class NewReservationActivityFragment extends Fragment implements NewReser
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(final List<Gadget> allAvailableGadgets) {
-                LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
+                libraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
                     @Override
                     public void onCompletion(List<Reservation> alreadyReserved) {
                         gadgetList.clear();
