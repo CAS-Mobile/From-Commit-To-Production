@@ -23,7 +23,6 @@ public class GadgeothekApplication extends Application {
     }
 
     protected LibraryService createLibraryService(String url) {
-        LibraryService.setServerAddress(url);
-        return new LibraryService();
+        return new LibraryService(url);
     }
 }

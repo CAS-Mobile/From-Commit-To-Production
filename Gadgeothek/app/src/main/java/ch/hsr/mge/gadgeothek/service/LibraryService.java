@@ -22,6 +22,10 @@ public class LibraryService {
     private static LoginToken token;
     private static String serverUrl;
 
+    public LibraryService(String serverUrl) {
+        this.serverUrl = serverUrl;
+    }
+
     public static void setServerAddress(String address) {
         Log.d(TAG, "Setting server to " + address);
         serverUrl = address;
