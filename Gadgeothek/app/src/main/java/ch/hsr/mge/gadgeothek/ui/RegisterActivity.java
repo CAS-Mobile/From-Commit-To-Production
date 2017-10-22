@@ -8,10 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
-import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
 
@@ -105,7 +103,7 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
             showProgress(loginFormView, progressView, true);
             hideSoftKeyboard(loginFormView);
 
-            LibraryService.register(email, password, name, matrikelNr, new Callback<Boolean>() {
+            libraryService.register(email, password, name, matrikelNr, new Callback<Boolean>() {
                 @Override
                 public void onCompletion(Boolean success) {
                     showProgress(loginFormView, progressView, false);

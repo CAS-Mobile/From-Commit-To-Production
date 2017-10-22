@@ -73,7 +73,7 @@ public class LibraryService {
         request.execute();
     }
 
-    public static void register(String mail, String password, String name, String studentenNumber, final Callback<Boolean> callback) {
+    public void register(String mail, String password, String name, String studentenNumber, final Callback<Boolean> callback) {
         checkServerUrlSet();
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("email", mail);
