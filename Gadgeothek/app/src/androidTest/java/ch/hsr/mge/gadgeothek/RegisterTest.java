@@ -3,12 +3,12 @@ package ch.hsr.mge.gadgeothek;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import ch.hsr.mge.gadgeothek.ui.RegisterActivity;
-import ch.hsr.mge.gadgeothek.ui.SplashActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import ch.hsr.mge.gadgeothek.ui.SplashActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -23,7 +23,9 @@ public class RegisterTest {
     public ActivityTestRule<SplashActivity> activityTestRule = new ActivityTestRule<>(SplashActivity.class);
 
     @Test
-    public void showsRegisterActivity() {
+    public void showsRegisterActivity() throws InterruptedException {
+        // This sleep is needed because SplashActivity uses postDelayed with a delay of 2000 ms
+        Thread.sleep(2000);
         onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
     }
 }
