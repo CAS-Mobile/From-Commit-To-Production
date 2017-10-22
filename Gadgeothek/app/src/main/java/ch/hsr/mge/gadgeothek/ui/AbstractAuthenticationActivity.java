@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import ch.hsr.mge.gadgeothek.GadgeothekApplication;
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
