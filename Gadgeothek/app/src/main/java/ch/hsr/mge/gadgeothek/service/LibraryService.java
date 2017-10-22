@@ -183,7 +183,7 @@ public class LibraryService {
         request.execute();
     }
 
-    public static void getGadgets(final Callback<List<Gadget>> callback) {
+    public void getGadgets(final Callback<List<Gadget>> callback) {
         checkServerUrlSet();
         checkLoggedIn();
         HashMap<String, String> headers = getAuthHeaders();

@@ -24,7 +24,6 @@ import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.domain.Gadget;
 import ch.hsr.mge.gadgeothek.domain.Reservation;
 import ch.hsr.mge.gadgeothek.service.Callback;
-import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 import static ch.hsr.mge.gadgeothek.GadgeothekApplication.libraryService;
 
@@ -61,7 +60,7 @@ public class NewReservationActivityFragment extends Fragment implements NewReser
         listView.setTextFilterEnabled(true);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        LibraryService.getGadgets(new Callback<List<Gadget>>() {
+        libraryService.getGadgets(new Callback<List<Gadget>>() {
             @Override
             public void onCompletion(final List<Gadget> allAvailableGadgets) {
                 libraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
