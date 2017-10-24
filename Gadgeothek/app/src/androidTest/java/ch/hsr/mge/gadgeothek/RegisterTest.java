@@ -4,6 +4,9 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import ch.hsr.mge.gadgeothek.http.MockedGadgeothekBackend;
+import ch.hsr.mge.gadgeothek.ui.RegisterActivity;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,14 +21,26 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RegisterTest {
-
     @Rule
-    public ActivityTestRule<SplashActivity> activityTestRule = new ActivityTestRule<>(SplashActivity.class);
+    public ActivityTestRule<RegisterActivity> activityTestRule = new ActivityTestRule<>(RegisterActivity.class);
+
+    private MockedGadgeothekBackend backend;
+
+    @Before
+    public void setUp() {
+        backend = new MockedGadgeothekBackend(GadgeothekTestApplication.httpProxy);
+    }
 
     @Test
     public void showsRegisterActivity() throws InterruptedException {
-        // This sleep is needed because SplashActivity uses postDelayed with a delay of 2000 ms
-        Thread.sleep(2000);
-        onView(withId(R.id.registerButton)).check(matches(isDisplayed()));
+        backend.givenRegisterSuccessful();
+        backend.givenLoginSuccessful("1234", "token");
+        backend.givenEmptyLoans();
+        backend.givenEmptyLoans();
+
+        new RegisterPage()
+                .registerSuccessfully("Yves", "yves.bonjour@gmail.com", 1234, "password")
+                .verify()
+                .gadgeothekIsDisplayed();
     }
 }
