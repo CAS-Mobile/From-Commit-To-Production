@@ -15,6 +15,10 @@ public class MockedGadgeothekBackend {
         httpProxy.mockCall(post("/public/register"), "true");
     }
 
+    public void givenRegisterUnsuccessful() {
+        httpProxy.mockCall(post("/public/register"), 500);
+    }
+
     public void givenLoginSuccessful(String customerId, String securityToken) {
         String loginResponse = "{\"customerId\": \"" + customerId + "\", \"securityToken\": \"" + securityToken + "\"}";
         httpProxy.mockCall(post("/public/login"), loginResponse);

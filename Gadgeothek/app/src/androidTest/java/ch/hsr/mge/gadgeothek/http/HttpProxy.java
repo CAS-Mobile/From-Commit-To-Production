@@ -17,6 +17,16 @@ public class HttpProxy extends OkHttpClient {
         mockedCalls.add(new MockedCallMatching(matcher, mockedCall));
     }
 
+    public void mockCall(Endpoint endpoint, int statusCode) {
+        EndpointRequestMatcher matcher = new EndpointRequestMatcher(endpoint);
+        MockedCall mockedCall = new MockedCall(statusCode);
+        mockedCalls.add(new MockedCallMatching(matcher, mockedCall));
+    }
+
+    public void clear() {
+        mockedCalls.clear();
+    }
+
     @Override
     public Call newCall(Request request) {
         MockedCall mockedCall = findMockedCall(request);

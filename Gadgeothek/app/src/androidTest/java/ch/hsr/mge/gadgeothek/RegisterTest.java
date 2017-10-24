@@ -4,6 +4,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import ch.hsr.mge.gadgeothek.http.HttpProxy;
 import ch.hsr.mge.gadgeothek.http.MockedGadgeothekBackend;
 import ch.hsr.mge.gadgeothek.ui.RegisterActivity;
 import org.junit.Before;
@@ -28,11 +29,13 @@ public class RegisterTest {
 
     @Before
     public void setUp() {
+        HttpProxy httpProxy = GadgeothekTestApplication.httpProxy;
+        httpProxy.clear();
         backend = new MockedGadgeothekBackend(GadgeothekTestApplication.httpProxy);
     }
 
     @Test
-    public void showsRegisterActivity() throws InterruptedException {
+    public void registerSuccessfully() throws InterruptedException {
         backend.givenRegisterSuccessful();
         backend.givenLoginSuccessful("1234", "token");
         backend.givenEmptyLoans();
@@ -42,5 +45,15 @@ public class RegisterTest {
                 .registerSuccessfully("Yves", "yves.bonjour@gmail.com", 1234, "password")
                 .verify()
                 .gadgeothekIsDisplayed();
+    }
+
+    @Test
+    public void registerFails() throws InterruptedException {
+        backend.givenRegisterUnsuccessful();
+
+        new RegisterPage()
+                .registerUnsuccessfully("Yves", "yves.bonjour@gmail.com", 1234, "password")
+                .verify()
+                .errorMessageIsVisible();
     }
 }
