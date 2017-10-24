@@ -74,6 +74,10 @@ class Request<T> extends AsyncTask<Void, Void, Pair<String, T>> {
 
             Response response = httpClient.newCall(request).execute();
 
+            if(!response.isSuccessful()) {
+                return new Pair<>("Server retruned status code " + response.code(), null);
+            }
+
             responseBody = response.body().string();
 
             Log.d(this.getClass().getSimpleName(), "Response received: " + responseBody);
