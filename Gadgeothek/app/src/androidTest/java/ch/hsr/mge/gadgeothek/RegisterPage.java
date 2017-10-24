@@ -18,8 +18,11 @@ public class RegisterPage {
             int studentNumber,
             String password) {
         onView(withId(R.id.name)).perform(typeText(name));
+        closeSoftKeyboard();
         onView(withId(R.id.email)).perform(typeText(email));
+        closeSoftKeyboard();
         onView(withId(R.id.matrikelnr)).perform(typeText(valueOf(studentNumber)));
+        closeSoftKeyboard();
         onView(withId(R.id.password)).perform(typeText(password));
         closeSoftKeyboard();
         onView(withId(R.id.registerButton)).perform(click());
