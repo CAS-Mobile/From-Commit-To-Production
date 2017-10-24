@@ -7,9 +7,16 @@ import java.io.IOException;
 class MockedCall implements Call {
 
     private final String responseBody;
+    private final int statusCode;
+
+    public MockedCall(int statusCode) {
+        this.statusCode = statusCode;
+        this.responseBody = "";
+    }
 
     public MockedCall(String responseBody) {
         this.responseBody = responseBody;
+        this.statusCode = 200;
     }
 
     @Override
@@ -25,7 +32,7 @@ class MockedCall implements Call {
                 .request(request)
                 .body(body)
                 .protocol(Protocol.HTTP_1_1)
-                .code(200)
+                .code(statusCode)
                 .message("OK")
                 .build();
     }
