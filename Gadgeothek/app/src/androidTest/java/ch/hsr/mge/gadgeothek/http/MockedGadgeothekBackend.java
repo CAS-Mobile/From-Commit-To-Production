@@ -16,6 +16,10 @@ public class MockedGadgeothekBackend {
     }
 
     public void givenRegisterUnsuccessful() {
+        httpProxy.mockCall(post("/public/register"), "false");
+    }
+
+    public void givenRegisterServerError() {
         httpProxy.mockCall(post("/public/register"), 500);
     }
 

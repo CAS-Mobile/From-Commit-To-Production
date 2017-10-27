@@ -7,6 +7,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.lang.String.valueOf;
 
 public class RegisterPage {
@@ -49,6 +50,10 @@ public class RegisterPage {
     static class Verifications {
         public void errorMessageIsVisible() {
             onView(withId(android.support.design.R.id.snackbar_text)).check(matches(isDisplayed()));
+        }
+
+        public void passwordErrorMessageIsVisible(){
+            onView(withText(R.string.error_incorrect_password)).check(matches(isDisplayed()));
         }
     }
 }
