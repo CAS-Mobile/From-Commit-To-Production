@@ -12,6 +12,7 @@ import android.view.Window;
 
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
+import ch.hsr.mge.gadgeothek.ui.login.LoginActivity;
 
 public class SplashActivity extends AbstractAuthenticationActivity {
     private View progressView;
