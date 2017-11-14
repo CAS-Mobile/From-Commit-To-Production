@@ -118,8 +118,15 @@ public class GadgeothekActivity extends AppCompatActivity {
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
+            case R.id.action_crash:
+                causeCrash();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void causeCrash() {
+        throw new NullPointerException("Fake null pointer exception");
     }
 
     public static DateFormat getDateFormat(Context ctx) {

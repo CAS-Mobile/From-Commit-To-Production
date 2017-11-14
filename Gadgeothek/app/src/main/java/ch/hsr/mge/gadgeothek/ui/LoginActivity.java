@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
+import com.crashlytics.android.Crashlytics;
+
 import ch.hsr.mge.gadgeothek.R;
 
 public class LoginActivity extends AbstractAuthenticationActivity {
@@ -97,8 +99,16 @@ public class LoginActivity extends AbstractAuthenticationActivity {
     }
 
     protected void loginSucceeded(boolean isAutoLogin) {
+        logUser();
         startMainActivity(isAutoLogin);
     }
+
+    private void logUser() {
+        SharedPreferences preferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
+        String email = preferences.getString(EMAIL, null);
+        Crashlytics.setUserEmail(email);
+    }
+
 
     protected void loginFailed(String message) {
         showProgress(loginFormView, progressView, false);
