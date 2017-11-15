@@ -102,17 +102,9 @@ public class LoginActivity extends AbstractAuthenticationActivity {
     }
 
     protected void loginSucceeded(boolean isAutoLogin) {
-        logUser();
         Answers.getInstance().logLogin(new LoginEvent().putSuccess(true));
         startMainActivity(isAutoLogin);
     }
-
-    private void logUser() {
-        SharedPreferences preferences = getSharedPreferences(PREFERENCES, MODE_PRIVATE);
-        String email = preferences.getString(EMAIL, null);
-        Crashlytics.setUserEmail(email);
-    }
-
 
     protected void loginFailed(String message) {
         Answers.getInstance().logLogin(new LoginEvent().putSuccess(false));
