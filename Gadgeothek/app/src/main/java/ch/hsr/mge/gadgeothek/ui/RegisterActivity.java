@@ -10,11 +10,14 @@ import android.widget.EditText;
 
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
+import ch.hsr.mge.gadgeothek.service.Configuration;
+import ch.hsr.mge.gadgeothek.service.ConfigurationService;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class RegisterActivity extends AbstractAuthenticationActivity {
 
     private EditText emailView;
+    private EditText phoneView;
     private EditText passwordView;
     private EditText nameView;
     private EditText matrikelNrView;
@@ -31,6 +34,7 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
 
         // Set up the login form.
         emailView = (EditText) findViewById(R.id.email);
+        phoneView = (EditText) findViewById(R.id.phone);
         nameView = (EditText) findViewById(R.id.name);
         matrikelNrView = (EditText) findViewById(R.id.matrikelnr);
         passwordView = (EditText) findViewById(R.id.password);
@@ -44,6 +48,29 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
 
         loginFormView = findViewById(R.id.login_form);
         progressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showPhoneView();
+    }
+
+    private void showPhoneView() {
+        ConfigurationService configurationService = new ConfigurationService(getString(R.string.feature_config_server));
+        configurationService.getConfiguration(new Callback<Configuration>() {
+            @Override
+            public void onCompletion(Configuration configuration) {
+                if (configuration.isEnabled("phoneNumber")) {
+                    phoneView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                // do nothing on error (don't show phone number)
+            }
+        });
     }
 
     /**
