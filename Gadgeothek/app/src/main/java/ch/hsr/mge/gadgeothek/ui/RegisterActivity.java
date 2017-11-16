@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
 import ch.hsr.mge.gadgeothek.R;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.Configuration;
@@ -91,6 +90,7 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
         final String password = passwordView.getText().toString();
         String name = nameView.getText().toString();
         String matrikelNr = matrikelNrView.getText().toString();
+        String phoneNumber = phoneView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -113,6 +113,13 @@ public class RegisterActivity extends AbstractAuthenticationActivity {
         if (TextUtils.isEmpty(email)) {
             emailView.setError(getString(R.string.error_field_required));
             focusView = emailView;
+            cancel = true;
+        }
+
+        // Check for valid phone number
+        if (TextUtils.isEmpty(phoneNumber) && phoneView.getVisibility() == View.VISIBLE) {
+            phoneView.setError(getString(R.string.error_field_required));
+            focusView = phoneView;
             cancel = true;
         }
 
