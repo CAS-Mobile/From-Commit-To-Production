@@ -11,7 +11,7 @@ pipeline {
 			}
 		}
 
-		stage('End2End Tests') {
+/*		stage('End2End Tests') {
 		    steps {
 		        sh '(cd Gadgeothek; ./gradlew connectedAndroidTest)'
 		    }
@@ -19,6 +19,7 @@ pipeline {
 		        always { junit "Gadgeothek/app/build/outputs/androidTest-results/connected/flavors/DEMO/*.xml" }
 		    }
 		}
+*/
 
 		stage('Package') {
 		    steps {
