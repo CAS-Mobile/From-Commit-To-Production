@@ -4,19 +4,47 @@ var config = {
 };
 const server = http.createServer(function(request, response) {
 	console.log(request.method + ': ' + request.url);
-	if (request.url != '/config') {
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	response.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, OPTIONS');
+	if(request.method == 'OPTIONS') {
+		response.writeHead(200);
+		response.end();
+		return
+	}
+
+	if (!request.url.match(/\/config.*/)) {
 		return notFound(response);
 	}
 
 	if(request.method == 'GET') {
 		return getConfig(response);
 	} else if(request.method == 'PUT') {
-		return putConfig(request, response);
+		if(request.url == '/config') {
+			return putConfig(request, response);	
+		} else {
+			return putFeature(request, response);
+		}
 	} else {
 		return notFound(response);
 	}
 	
 });
+	
+function putFeature(request, response) {
+	var body = "";
+	request.on('data', function(data) {
+		body += data;
+	});
+	request.on('end', function() {
+		let isEnabled = JSON.parse(body);
+		body = "";
+
+		let feature = request.url.substring(request.url.lastIndexOf("/") + 1);
+		config[feature] = isEnabled;
+		response.writeHead(200);
+		response.end();
+	});
+}
 
 function notFound(response) {
 	response.writeHead(404);
